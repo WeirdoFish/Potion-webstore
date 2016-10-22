@@ -42,7 +42,7 @@
                 <tr>
 
                     <td  colspan="1" width="275">
-                        <img src="images/logo.png" height="130px" width="260px"></img>
+                        <img src="images/logo.png" onclick="javascript: window.location = 'index.jsp';" style = 'cursor: pointer;' height="130px" width="260px"></img>
                     </td>
                     <td  colspan="2">
                         <div class="header"><fmt:message key="storeName"/></div>   
@@ -117,9 +117,9 @@
                                     <td colspan="3" align="center">
                                         <div align="center" class="countPrice auth" align="center">
 
-                                            <fmt:message key="auth"/>
+                                            <fmt:message key="authFail"/>
                                             <div align="center">
-                                                <button onclick="javascript: window.location='login';" class="login"><fmt:message key="login"/></button>
+                                                <button onclick="javascript: window.location='login?log=in&rdir=cart.jsp';" class="login"><fmt:message key="login"/></button>
                                             </div>
                                         </div>
 

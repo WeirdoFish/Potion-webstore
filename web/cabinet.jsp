@@ -11,7 +11,7 @@
         <%
             HttpSession session0 = request.getSession();
             if (null == session0 || session0.getAttribute("auth")==(null)) {
-                response.sendRedirect("login");
+                response.sendRedirect("login?log=in&rdir=cabinet.jsp");
                 return;
             }
             Locale locale = response.getLocale();
@@ -27,7 +27,7 @@
 
         %>
 
-        <title>Potion Store - Authentification</title>
+        <title>Potion Store - Cabinet</title>
         <link rel='stylesheet' href='tabStyles.css'>
     </head>
     <body  bgcolor="#F8FCD9" style="background-image:url(images/bg.png)">
@@ -37,7 +37,7 @@
                 <tr>
 
                     <td  colspan="1" width="275">
-                        <img src="images/logo.png" height="130px" width="260px"></img>
+                        <img src="images/logo.png" style = 'cursor: pointer;' onclick="javascript: window.location = 'index.jsp';" height="130px" width="260px"></img>
                     </td>
                     <td  colspan="2">
                         <div class="header"><%=myres.getString("storeName")%></div>   
@@ -79,7 +79,4 @@
 
             </table>
     </body>
-    <script type="text/javascript">
-
-    </script>
 </html>

@@ -45,8 +45,8 @@ public class Product extends HttpServlet {
             out.println("<link rel='stylesheet' href='tabStyles.css'>");
 
             out.println("<title>Potion Store - Product info</title>");
-            out.println("<script src='tabs.js'></script>");
-            out.println("<script src='change.js'></script>");
+            out.println("<script src='js/tabs.js'></script>");
+            out.println("<script src='js/change.js'></script>");
             //out.println("<h1>" + myres.getString("storeName") + "</h1>");
             //out.println("<img align='right' hspace='3' style = 'cursor: pointer;' onclick=\"changeLocale('lat')\" title='Latinae' onclick='' src='images/RI.png'></img>");
             //out.println("<img align='right' hspace='3' style = 'cursor: pointer;' onclick=\"changeLocale('en')\" title='English' src='images/UK.png'></img>");
@@ -58,7 +58,7 @@ public class Product extends HttpServlet {
                     + "                <tr>\n"
                     + "\n"
                     + "                    <td  colspan=\"1\" width=\"275\">\n"
-                    + "                        <img src=\"images/logo.png\" height=\"130px\" width=\"260px\"></img>\n"
+                    + "                        <img src=\"images/logo.png\" onclick=\"javascript: window.location = 'index.jsp';\" style = 'cursor: pointer;' height=\"130px\" width=\"260px\"></img>"
                     + "                    </td>\n"
                     + "                    <td  colspan=\"2\">\n"
                     + "                        <div class=\"header\">" + myres.getString("storeName") + "</div>   \n"
@@ -123,12 +123,10 @@ public class Product extends HttpServlet {
             if(initPar!=null){
             HttpSession session = request.getSession();
             session.setAttribute("tab", getInitParameter("firstTab"));
-            response.sendRedirect("index.jsp");
+            response.sendRedirect(request.getParameter("rdir"));
             }else{
               processRequest(request, response);
-            }
-        
-       
+            }  
     }
 
     /**

@@ -32,7 +32,7 @@
                 <tr>
 
                     <td  colspan="1" width="275">
-                        <img src="images/logo.png" height="130px" width="260px"></img>
+                        <img src="images/logo.png" style = 'cursor: pointer;' onclick="javascript: window.location = 'index.jsp';" height="130px" width="260px"></img>
                     </td>
                     <td  colspan="2">
                         <div class="header"><fmt:message key="storeName"/></div>   
@@ -58,7 +58,7 @@
                                         <input  placeholder="..." type="text" size="20" name="j_username"></br>
                                      <p class="other"><fmt:message key="passw"/></p>
                                         <input placeholder="..." type="password" size="20" name="j_password">
-                                    <p><input class = "login" type="submit" value=""></p>
+                                    <p><input class = "login" type="submit" value="<fmt:message key="auth"/>"></p>
                                 </div>
                             </form>
                         </table>
@@ -67,8 +67,5 @@
 
             </table>
     </body>
-    <script type="text/javascript">
-
-    </script>
 </html>
 

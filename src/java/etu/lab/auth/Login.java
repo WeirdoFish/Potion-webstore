@@ -16,10 +16,7 @@ public class Login extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            HttpSession session = request.getSession();
-            session.setAttribute("username", request.getUserPrincipal().getName());
-            session.setAttribute("auth", "true");
-            response.sendRedirect("product?getinit=true");
+           
         }
     }
 
@@ -33,6 +30,13 @@ public class Login extends HttpServlet {
             if (log.equals("out")) {
                 session.invalidate();
                 response.sendRedirect("index.jsp");
+            }
+            if (log.equals("in")) {
+                String redirect = request.getParameter("rdir");
+
+                session.setAttribute("username", request.getUserPrincipal().getName());
+                session.setAttribute("auth", "true");
+                response.sendRedirect("product?getinit=true&rdir="+redirect);
             }
         } else {
             processRequest(request, response);

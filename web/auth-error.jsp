@@ -22,7 +22,7 @@
             <fmt:setBundle basename="strings_lat"/>
         </c:if>
 
-        <title>Potion Store - Authentification</title>
+        <title>Potion Store - Error</title>
         <link rel='stylesheet' href='tabStyles.css'>
     </head>
     <body  bgcolor="#F8FCD9" style="background-image:url(images/bg.png)">
@@ -32,7 +32,7 @@
                 <tr>
 
                     <td  colspan="1" width="275">
-                        <img src="images/logo.png" height="130px" width="260px"></img>
+                        <img src="images/logo.png" onclick="javascript: window.location = 'index.jsp';" style = 'cursor: pointer;' height="130px" width="260px"></img>
                     </td>
                     <td  colspan="2">
                         <div class="header"><fmt:message key="storeName"/></div>   

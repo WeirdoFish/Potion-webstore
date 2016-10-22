@@ -34,8 +34,6 @@
         %>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Potion Store - Catalog</title>
-        <script src='change.js'></script>
-        <script src='filter.js'></script>
         <link rel='stylesheet' href='tabStyles.css'>
         <jsp:useBean id="Bean1" class="etu.lab.ProdBean" scope="request">
             <jsp:setProperty name="Bean1" property="price" value="p2" />
@@ -84,7 +82,7 @@
                 <tr>
 
                     <td  colspan="1" width="275">
-                        <img src="images/logo.png" height="130px" width="260px"></img>
+                        <img src="images/logo.png" style = 'cursor: pointer;' onclick="javascript: window.location = 'index.jsp';" height="130px" width="260px"></img>
                     </td>
                     <td  colspan="2">
                         <div class="header"><%= myres.getString("storeName")%></div>   
@@ -155,14 +153,16 @@
 
 
     </body>
-    <script src='getParam.js'></script>
+    <script src='js/getParam.js'></script>
+    <script srcs='js/change.js'></script>
+    <script src='js/filter.js'></script>
     <script type="text/javascript">
 
                             window.onload = function () {
                                 var products = document.getElementsByClassName("list");
                                 var value = getCookie("categ");
                                 var pValue = getCookie("price");
-                              
+
                                 if (value === "opt1" || !value) {
                                     for (i = 0; i < products.length; i++) {
                                         products[i].style.display = "block";

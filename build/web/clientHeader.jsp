@@ -18,7 +18,7 @@
             }
             ResourceBundle myres = ResourceBundle.getBundle("strings", locale);
         %>
-        <script src='change.js'></script>
+        <script src='js/change.js'></script>
         <link rel='stylesheet' href='tabStyles.css'>
         <title>JSP Page</title>
     </head>
@@ -47,7 +47,7 @@
                     <%
                         if (request.getSession().getAttribute("auth") == null) {
                     %>
-                    <button class="login"  onclick="javascript: window.location = 'login';">  <%= myres.getString("login")%></button>
+                    <button class="login"  onclick="javascript: window.location = 'login?log=in&rdir=index.jsp';">  <%= myres.getString("login")%></button>
                     <%
                     } else {
                     %>

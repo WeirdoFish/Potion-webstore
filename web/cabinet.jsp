@@ -50,8 +50,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td colspan="4" width="1100">
-                        <table align="center" width="1100" table-layout="fixed">
+                    <td align="center" colspan="4" width="1100">
+                        <table  width="500" table-layout="fixed">
                            
                         </table>
                     </td>
@@ -60,7 +60,6 @@
             </table>
     </body>
     <script type="text/javascript">
-       
+
     </script>
 </html>
-

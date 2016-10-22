@@ -27,10 +27,14 @@
     <security-constraint>
         <web-resource-collection>
             <url-pattern>/cabinet.jsp</url-pattern>
+            
         </web-resource-collection>
         <auth-constraint>
             <role-name>user</role-name>
         </auth-constraint>
+        <user-data-constraint>
+            <transport-guarantee>CONFIDENTIAL</transport-guarantee>
+        </user-data-constraint>
     </security-constraint>
     <security-role>
         <role-name>user</role-name>
@@ -39,11 +43,11 @@
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
-            <form-login-page>/auth/auth.jsp</form-login-page>
-            <form-error-page>/auth/auth-error.jsp</form-error-page> 
+            <form-login-page>/auth.jsp</form-login-page>
+            <form-error-page>/auth-error.jsp</form-error-page> 
         </form-login-config>
+        
     </login-config>
-
     <session-config>
         <session-timeout>
             30

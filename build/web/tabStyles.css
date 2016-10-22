@@ -198,3 +198,13 @@ p.tabHead{
   font-size: 30px;
  margin-top:4px;
 }
+input.login{
+    display: block;
+    background: #A0AA5A;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin:7px;
+}
+

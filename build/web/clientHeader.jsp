@@ -25,7 +25,17 @@
     <body>
         <table>
             <tr>
-                <td colspan="3">
+                <td colspan="2">
+                     <%
+                        if (request.getSession().getAttribute("auth") != null) {
+                           out.println(myres.getString("hello")+" <b>" + request.getSession().getAttribute("username")+"</b>");
+                        %>
+                        </br><b><a class="alink" href="cabinet.jsp"><%=myres.getString("cab")%></a></b>
+                        <%
+                        }
+                    %>
+                </td>
+                <td colspan="1">
                     <div class="loc">
                         <img align='right' hspace='3' style = 'cursor: pointer;' onclick="changeLocale('lat')" title='Latinae' onclick='' src='images/RI.png'></img>
                         <img align='right' hspace='3' style = 'cursor: pointer;' onclick="changeLocale('en')" title='English' src='images/UK.png'></img>
@@ -34,10 +44,20 @@
                 </td>
             <tr>
                 <td>
-                    <button class="login">  <%= myres.getString("login")%></button>
+                    <%
+                        if (request.getSession().getAttribute("auth") == null) {
+                    %>
+                    <button class="login"  onclick="javascript: window.location = 'login';">  <%= myres.getString("login")%></button>
+                    <%
+                    } else {
+                    %>
+                    <button class="login"  onclick="javascript: window.location = 'login?log=out';">  <%= myres.getString("logout")%></button>
+                    <%
+                        }
+                    %>
                 </td>
                 <td>
-                    <button class="another" onclick="javascript: window.location='cart.jsp';"><%= myres.getString("cart")%> </button>
+                    <button class="another" onclick="javascript: window.location = 'cart.jsp';"><%= myres.getString("cart")%> </button>
                 </td>
                 <td>
                     <button class="another"><%= myres.getString("history")%></button>

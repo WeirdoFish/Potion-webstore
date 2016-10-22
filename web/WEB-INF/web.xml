@@ -12,9 +12,18 @@
             <param-value>longD</param-value>
         </init-param>
     </servlet>
+    <servlet>
+        <servlet-name>Login</servlet-name>
+        <servlet-class>etu.lab.auth.Login</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Product</servlet-name>
         <url-pattern>/product</url-pattern>
+    </servlet-mapping>
+    
+    <servlet-mapping>
+        <servlet-name>Login</servlet-name>
+        <url-pattern>/login</url-pattern>
     </servlet-mapping>
   
     <jsp-config>
@@ -27,7 +36,8 @@
     <security-constraint>
         <web-resource-collection>
             <url-pattern>/cabinet.jsp</url-pattern>
-            
+            <url-pattern>/redirect.jsp</url-pattern>
+             <url-pattern>/login</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>user</role-name>
@@ -36,6 +46,7 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
+    
     <security-role>
         <role-name>user</role-name>
     </security-role>
@@ -45,12 +56,12 @@
         <form-login-config>
             <form-login-page>/auth.jsp</form-login-page>
             <form-error-page>/auth-error.jsp</form-error-page> 
-        </form-login-config>
-        
+        </form-login-config> 
     </login-config>
+    
     <session-config>
         <session-timeout>
-            30
+           1
         </session-timeout>
     </session-config>
    

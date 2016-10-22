@@ -119,7 +119,7 @@
 
                                             <fmt:message key="auth"/>
                                             <div align="center">
-                                                <button class="login"><fmt:message key="login"/></button>
+                                                <button onclick="javascript: window.location='login';" class="login"><fmt:message key="login"/></button>
                                             </div>
                                         </div>
 
@@ -128,8 +128,8 @@
                             </c:if>
                             <c:if test="${not empty sessionScope.auth}">
                                 <tr>
-                                    <td>
-                                        <!-- А тут будет кнопка заказа-->
+                                    <td colspan="4" align="center">
+                                        <button class="buyBut"><fmt:message key="purchase"/></button>
                                     </td>
                                 </tr>
                             </c:if>

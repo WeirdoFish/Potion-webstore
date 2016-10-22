@@ -1,3 +1,5 @@
+<%@page import="java.util.Locale"%>
+<%@page import="java.util.ResourceBundle"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page isELIgnored="false"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -6,21 +8,24 @@
 <html>
     <head>
 
-        <c:if test="${empty cookie.locale.value}">
-            <fmt:setBundle basename="strings"/> 
-            <fmt:setLocale value="${pageContext.getLocale()}) "/>
-        </c:if>       
-        <c:if test="${cookie.locale.value eq 'ru'}">
-            <fmt:setBundle basename="strings_ru"/>
-        </c:if>
+        <%
+            HttpSession session0 = request.getSession();
+            if (null == session0 || session0.getAttribute("auth")==(null)) {
+                response.sendRedirect("login");
+                return;
+            }
+            Locale locale = response.getLocale();
+            Cookie cookie[] = request.getCookies();
+            if (cookie != null) {
+                for (Cookie c : cookie) {
+                    if ("locale".equals(c.getName())) {
+                        locale = new Locale(c.getValue());
+                    }
+                }
+            }
+            ResourceBundle myres = ResourceBundle.getBundle("strings", locale);
 
-        <c:if test="${cookie.locale.value eq 'en'}">
-            <fmt:setBundle basename="strings_en"/>
-        </c:if>
-
-        <c:if test="${cookie.locale.value eq 'lat'}">
-            <fmt:setBundle basename="strings_lat"/>
-        </c:if>
+        %>
 
         <title>Potion Store - Authentification</title>
         <link rel='stylesheet' href='tabStyles.css'>
@@ -35,7 +40,7 @@
                         <img src="images/logo.png" height="130px" width="260px"></img>
                     </td>
                     <td  colspan="2">
-                        <div class="header"><fmt:message key="storeName"/></div>   
+                        <div class="header"><%=myres.getString("storeName")%></div>   
                     </td>
                     <td align="right" colspan="1" width="400">
                         <div>
@@ -51,9 +56,24 @@
                 </tr>
                 <tr>
                     <td align="center" colspan="4" width="1100">
-                        <table  width="500" table-layout="fixed">
-                           
-                        </table>
+
+                        <div class='itemP' style="height:200px;">
+                            <p class="other"><%=myres.getString("name")%></p> 
+                            <%= request.getSession().getAttribute("username")%> 
+                            <p class="other"><%=myres.getString("tab0")%></p> 
+                            <%
+                                String tab = request.getSession().getAttribute("tab").toString();
+                                if (tab.equals("shortD")) {
+                                    out.println(myres.getString("shortDiscr"));
+                                }
+                                if (tab.equals("longD")) {
+                                    out.println(myres.getString("longDiscr"));
+                                }
+                                if (tab.equals("feedback")) {
+                                    out.println(myres.getString("feedback"));
+                                }
+                            %> 
+                        </div>
                     </td>
                 </tr>
 

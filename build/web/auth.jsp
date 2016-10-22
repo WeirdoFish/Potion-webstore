@@ -54,11 +54,11 @@
                         <table  width="500" table-layout="fixed">
                             <form action="j_security_check" method="POST" name="loginForm">
                                 <div id="loginBox">
-                                    <p class="other">Логин:</p>
-                                        <input  placeholder="Введите логин" type="text" size="20" name="j_username"></br>
-                                     <p class="other">Пароль:</p>
-                                        <input placeholder="Введите пароль" type="password" size="20" name="j_password">
-                                    <p><input class = "login" type="submit" value="Авторизоваться"></p>
+                                    <p class="other"><fmt:message key="logName"/></p>
+                                        <input  placeholder="..." type="text" size="20" name="j_username"></br>
+                                     <p class="other"><fmt:message key="passw"/></p>
+                                        <input placeholder="..." type="password" size="20" name="j_password">
+                                    <p><input class = "login" type="submit" value=""></p>
                                 </div>
                             </form>
                         </table>

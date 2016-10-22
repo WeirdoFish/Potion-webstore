@@ -53,8 +53,8 @@
                     <td align="center" colspan="4" width="1100">
                         <table  width="500" table-layout="fixed">
                             <div id="loginBox">
-                                <p class="other">Неверное имя пользователя или пароль</p>
-                                <p>Вернуться <strong><a class="alink" href="user">к авторизации</a></strong>.</p>
+                                <p class="other"><fmt:message key="fail"/></p>
+                                <p><fmt:message key="fail1"/> <strong><a class="alink" href="login"><fmt:message key="fail2"/></a></strong>.</p>
                             </div>
                         </table>
                     </td>

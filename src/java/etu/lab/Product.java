@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class Product extends HttpServlet {
 
@@ -64,9 +65,10 @@ public class Product extends HttpServlet {
                     + "                    </td>\n"
                     + "                    <td align=\"right\" colspan=\"1\" width=\"400\">\n"
                     + "                        <div>\n");
-            out.println("<img align='right' hspace='3' style = 'cursor: pointer;' onclick=\"changeLocale('lat')\" title='Latinae' onclick='' src='images/RI.png'></img>");
-            out.println("<img align='right' hspace='3' style = 'cursor: pointer;' onclick=\"changeLocale('en')\" title='English' src='images/UK.png'></img>");
-            out.println("<img align='right' hspace='3' style = 'cursor: pointer;' onclick=\"changeLocale('ru')\" title='Русский' src='images/RU.png'></img>");
+            request.getRequestDispatcher("clientHeader.jsp").include(request, response);
+           // out.println("<img align='right' hspace='3' style = 'cursor: pointer;' onclick=\"changeLocale('lat')\" title='Latinae' onclick='' src='images/RI.png'></img>");
+           // out.println("<img align='right' hspace='3' style = 'cursor: pointer;' onclick=\"changeLocale('en')\" title='English' src='images/UK.png'></img>");
+            //out.println("<img align='right' hspace='3' style = 'cursor: pointer;' onclick=\"changeLocale('ru')\" title='Русский' src='images/RU.png'></img>");
 
             out.println("                        </div>\n"
                     + "                    </td>\n"
@@ -117,7 +119,16 @@ public class Product extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+            String initPar = request.getParameter("getinit");
+            if(initPar!=null){
+            HttpSession session = request.getSession();
+            session.setAttribute("tab", getInitParameter("firstTab"));
+            response.sendRedirect("index.jsp");
+            }else{
+              processRequest(request, response);
+            }
+        
+       
     }
 
     /**

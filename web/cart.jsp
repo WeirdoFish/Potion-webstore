@@ -130,7 +130,7 @@
                                 <c:if test="${not (order.getSize() eq 0)}">
                                 <tr>
                                     <td colspan="4" align="center">
-                                        <button class="buyBut"><fmt:message key="purchase"/></button>
+                                        <button class="buyBut" onclick="javascript: window.location='purchase.jsp';"><fmt:message key="purchase"/></button>
                                     </td>
                                 </tr>
                                 </c:if>

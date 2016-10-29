@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE hibernate-mapping PUBLIC
+  "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+  "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="etu.lab.bd.History" table="HISTORY">
+        <id name="purchase" column="PURCHASE" type="int">
+         <generator class="increment"/>
+        </id>
+        <property name="customer" column="CUSTOMER" type="string"/>
+        <property name="price" column="PRICE" type="integer"/>
+        <property name="time" column="TIME" type="date"/>
+        <property name="ship" column="SHIP" type="string"/>
+    </class>
+ 
+    <class name="etu.lab.bd.Items" table="ITEMS">
+        <id name="num" type="int" column="NUM">
+            <generator class="increment"/>
+        </id>
+       
+        <property name="item" column="ITEM" type="integer"/>
+       <!-- <property name="purchase" column="PURCHASE" type="integer"/> -->
+        <property name="amount" column="AMOUNT" type="integer"/>
+        <many-to-one name="purchase" class="etu.lab.bd.History" column="PURCHASE"/>
+    </class>
+
+</hibernate-mapping>

@@ -17,7 +17,7 @@ public class History implements Serializable {
 
     @Column(name = "CUSTOMER")
     private String customer;
-     @Column(name = "PRICE")
+    @Column(name = "PRICE")
     private Integer price;
     @Id
     @Basic(optional = false)

@@ -1,3 +1,7 @@
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="etu.lab.bd.Notes"%>
+<%@page import="etu.lab.bd.DBWork"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="etu.lab.bd.Items"%>
@@ -34,7 +38,7 @@
         <c:if test="${cookie.locale.value eq 'lat'}">
             <fmt:setBundle basename="strings_lat"/>
         </c:if>
-
+        <jsp:useBean id="order" class="etu.lab.CartBean" scope="session"/>
         <title>Potion Store - Purchase</title>
         <link rel='stylesheet' href='tabStyles.css'>
     </head>
@@ -65,56 +69,14 @@
                 <tr>
                     <td align="center" colspan="4" width="1100">
                         <%
-                            Session session2
-                                    //SessionFactory sessionFactory = new AnnotationConfiguration().configure().buildSessionFactory();
-                                    //Session  session2=new AnnotationConfiguration().configure().buildSessionFactory().openSession();
-                                    = MyHibernateUtil.getSessionFactory().openSession();
-                            Transaction tx = null;
-                            StringBuilder sb = new StringBuilder();
-                            Integer resId = null;
-                            Integer itId = null;
-                            try {
-                                tx = session2.beginTransaction();
-                                History h = new History("user", new Date(), "somewhere", 300);
-                                Items items = new Items(1, 2, h);
-
-                                resId = (Integer) session2.save(h);
-                                session2.save(items);
-                                // Сохранение нового объекта
-                                tx.commit();
-                                // sb.append("<br>Название товара: ").append(h.get());
-                                // sb.append(";");
-                                //sb.append("Магазин: ").append(h.getMarket()).append(";<br>");
-                            } catch (HibernateException e) {
-                                if (tx != null) {
-                                    tx.rollback();
-                                }
-                                e.printStackTrace();
-                            } finally {
-                                session2.close();
+                            if(order.getSize()!=0) DBWork.addOrder(request.getSession().getAttribute("username").toString(),"blabla",order);
+                            ArrayList<Notes> list = DBWork.getHist(request.getSession().getAttribute("username").toString());
+                            if(list!=null){
+                            for (Notes cur : list) { 
+                               out.println(cur.getDate().toString());
+                               out.println(cur.getPrice().toString());
+                               out.println(cur.getMagazine().toString());
                             }
-
-                            Session session3 = null;
-                            Transaction txx = null;
-
-                            try {
-                                session3 = MyHibernateUtil.getSessionFactory().openSession();
-                                txx = session3.beginTransaction();
-                                List list = session3.createQuery("FROM History").list();
-
-
-                                for (Iterator iterator = list.iterator(); iterator.hasNext();) {
-                                    History cur = (History) iterator.next();  
-                                    out.println(cur.getCustomer()+"</br>");
-                                }
-                                txx.commit();
-                            } catch (HibernateException e) {
-                                if (tx != null) {
-                                    tx.rollback();
-                                }
-                                e.printStackTrace();
-                            } finally {
-                                session3.close();
                             }
                         %>
                     </td>

@@ -9,7 +9,11 @@
         <servlet-class>etu.lab.Product</servlet-class>
         <init-param>
             <param-name>firstTab</param-name>
-            <param-value>longD</param-value>
+            <param-value>feedback</param-value>
+                 </init-param>
+             <init-param>
+            <param-name>stdLang</param-name>
+            <param-value>EN</param-value>
         </init-param>
     </servlet>
     <servlet>

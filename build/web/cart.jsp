@@ -127,11 +127,13 @@
                                 </tr>
                             </c:if>
                             <c:if test="${not empty sessionScope.auth}">
+                                <c:if test="${not (order.getSize() eq 0)}">
                                 <tr>
                                     <td colspan="4" align="center">
                                         <button class="buyBut"><fmt:message key="purchase"/></button>
                                     </td>
                                 </tr>
+                                </c:if>
                             </c:if>
                         </table>
                     </td>

@@ -123,6 +123,7 @@ public class Product extends HttpServlet {
             if(initPar!=null){
             HttpSession session = request.getSession();
             session.setAttribute("tab", getInitParameter("firstTab"));
+            session.setAttribute("lang", getInitParameter("stdLang"));
             response.sendRedirect(request.getParameter("rdir"));
             }else{
               processRequest(request, response);

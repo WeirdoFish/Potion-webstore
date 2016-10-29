@@ -57,7 +57,7 @@
                 <tr>
                     <td align="center" colspan="4" width="1100">
 
-                        <div class='itemP' style="height:200px;">
+                        <div class='itemP' style="height:250px;">
                             <p class="other"><%=myres.getString("name")%></p> 
                             <%= request.getSession().getAttribute("username")%> 
                             <p class="other"><%=myres.getString("tab0")%></p> 
@@ -73,6 +73,8 @@
                                     out.println(myres.getString("feedback"));
                                 }
                             %> 
+                           <!-- <p class="other"><%=myres.getString("lang")%></p>
+                            <%=request.getSession().getAttribute("lang").toString()%> -->
                         </div>
                     </td>
                 </tr>

@@ -3,15 +3,15 @@
     <welcome-file-list>
         <welcome-file>index</welcome-file>
         <welcome-file>index.jsp</welcome-file>
-    </welcome-file-list>   
+    </welcome-file-list>
     <servlet>
         <servlet-name>Product</servlet-name>
         <servlet-class>etu.lab.Product</servlet-class>
         <init-param>
             <param-name>firstTab</param-name>
             <param-value>feedback</param-value>
-                 </init-param>
-             <init-param>
+        </init-param>
+        <init-param>
             <param-name>stdLang</param-name>
             <param-value>EN</param-value>
         </init-param>
@@ -20,28 +20,29 @@
         <servlet-name>Login</servlet-name>
         <servlet-class>etu.lab.auth.Login</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>Ordering</servlet-name>
+        <servlet-class>etu.lab.bd.Ordering</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>Product</servlet-name>
         <url-pattern>/product</url-pattern>
     </servlet-mapping>
-    
     <servlet-mapping>
         <servlet-name>Login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
-  
     <jsp-config>
         <jsp-property-group>
             <url-pattern>*.jsp</url-pattern>
             <el-ignored>false</el-ignored>
         </jsp-property-group>
     </jsp-config>
-    
     <security-constraint>
         <web-resource-collection>
             <url-pattern>/cabinet.jsp</url-pattern>
             <url-pattern>/redirect.jsp</url-pattern>
-             <url-pattern>/login</url-pattern>
+            <url-pattern>/login</url-pattern>
         </web-resource-collection>
         <auth-constraint>
             <role-name>user</role-name>
@@ -50,24 +51,23 @@
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
         </user-data-constraint>
     </security-constraint>
-    
     <security-role>
         <role-name>user</role-name>
     </security-role>
-    
     <login-config>
         <auth-method>FORM</auth-method>
         <form-login-config>
             <form-login-page>/auth.jsp</form-login-page>
-            <form-error-page>/auth-error.jsp</form-error-page> 
-        </form-login-config> 
+            <form-error-page>/auth-error.jsp</form-error-page>
+        </form-login-config>
     </login-config>
-    
+    <servlet-mapping>
+        <servlet-name>Ordering</servlet-name>
+        <url-pattern>/ordering</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
            20
         </session-timeout>
     </session-config>
-   
-    
 </web-app>

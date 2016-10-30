@@ -2,8 +2,8 @@
 <%@page import="javax.servlet.http.Cookie" %>
 <%@page import="java.util.ResourceBundle" %>
 <%@page import="java.util.Locale" %>
-<!DOCTYPE html>
-<html>
+
+
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <%
@@ -20,6 +20,7 @@
         %>
         <script src='js/change.js'></script>
         <link rel='stylesheet' href='tabStyles.css'>
+         <jsp:useBean id="order" class="etu.lab.CartBean" scope="session"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -60,11 +61,17 @@
                     <button class="another" onclick="javascript: window.location = 'cart.jsp';"><%= myres.getString("cart")%> </button>
                 </td>
                 <td>
-                    <button class="another"><%= myres.getString("history")%></button>
+                    <%
+                        if ((request.getSession().getAttribute("auth") != null) && (order.getSize()>0)) {
+                    %>
+                    <button class="another" onclick="javascript: window.location = 'purchase.jsp';"><%= myres.getString("purchase")%></button>
+                    <%
+                        }
+                    %>
                 </td>
             </tr>
         </tr>
     </table>
 
 </body>
-</html>
+

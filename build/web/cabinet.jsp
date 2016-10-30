@@ -75,6 +75,8 @@
                             %> 
                            <!-- <p class="other"><%=myres.getString("lang")%></p>
                             <%=request.getSession().getAttribute("lang").toString()%> -->
+                            
+                             <button style="margin-top:30px;" class="another" onclick="javascript: window.location = 'history.jsp';"><%= myres.getString("history")%></button>
                         </div>
                     </td>
                 </tr>

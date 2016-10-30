@@ -42,7 +42,23 @@ button.buyBut{
     cursor: pointer;
     margin:7px;
 }
-
+input.buyBut{
+    display: block;
+    background: #F48A4E;
+    padding: 10px 15px;
+    border-radius: 10px;
+    border: none;
+    cursor: pointer;
+    margin:7px;
+}
+input.adress{
+    width: 208px;
+    padding: 5px;
+    font-size: 16px;
+    border: 1px solid #F48A4E;
+    height: 22px;
+    margin: 5px;
+}
 button.login{
     display: block;
     background: #A0AA5A;
@@ -110,7 +126,7 @@ button.incdec{
     right:0px;
     position:relative;
     border-radius: 15px;
-    
+
 }
 .countPrice{
     display: block;
@@ -133,17 +149,17 @@ button.incdec{
     height:30px;
 }
 .auth{
-   width:500px;
-   height:80px; 
-   font-weight: 900;
-   color:#F48A4E;
+    width:500px;
+    height:80px; 
+    font-weight: 900;
+    color:#F48A4E;
 }
 .butset{
     position:relative;
     right:0px;
 }
 .textset{
-   width:620px; 
+    width:620px; 
 }
 a.alink{
     text-decoration: none;
@@ -163,7 +179,7 @@ a:hover {
     border-radius: 15px;
 }
 select.filter {
-    
+
     width: 220px;
     padding: 5px;
     font-size: 16px;
@@ -195,8 +211,8 @@ p.other{
     font-stretch: condensed;
 }
 p.tabHead{
-  font-size: 30px;
- margin-top:4px;
+    font-size: 30px;
+    margin-top:4px;
 }
 input.login{
     display: block;

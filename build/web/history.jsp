@@ -4,16 +4,8 @@
 <%@page import="java.util.ArrayList"%>
 <%@page import="etu.lab.bd.Notes"%>
 <%@page import="etu.lab.bd.DBWork"%>
-<%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="etu.lab.bd.Items"%>
-<%@page import="org.hibernate.cfg.AnnotationConfiguration"%>
 <%@page import="java.util.Date"%>
-<%@page import="org.hibernate.HibernateException"%>
-<%@page import="etu.lab.bd.MyHibernateUtil"%>
-<%@page import="org.hibernate.Transaction"%>
-<%@page import="org.hibernate.Session"%>
-<%@page import="org.hibernate.SessionFactory"%>
 
 <%@page import="net.sf.ehcache.hibernate.HibernateUtil"%>
 <%@page import="etu.lab.bd.History"%>
@@ -26,7 +18,11 @@
     <head>
 
         <%
-
+            HttpSession session0 = request.getSession();
+            if (null == session0 || session0.getAttribute("auth") == (null)) {
+                response.sendRedirect("login?log=in&rdir=history.jsp");
+                return;
+            }
             Locale locale = response.getLocale();
             Cookie cookie[] = request.getCookies();
             if (cookie != null) {
@@ -40,7 +36,7 @@
 
         %>
 
-        <title>Potion Store - Authentification</title>
+        <title>Potion Store - History</title>
         <link rel='stylesheet' href='tabStyles.css'>
     </head>
     <body  bgcolor="#F8FCD9" style="background-image:url(images/bg.png)">
@@ -72,26 +68,26 @@
 
                         <%
                             ArrayList<Notes> ArList = DBWork.getHist(request.getSession().getAttribute("username").toString());
-                            if (ArList.size()!=0) {
+                            if (ArList.size() != 0) {
                                 for (Notes cur : ArList) {
                         %>
                         <div class="itemP" style="margin-bottom:15px;" align="center">
                             <table>
                                 <tr>
                                     <td colspan="3" align="left">
-                                        <p class="other">Заказ от:
+                                        <p class="other"><%=myres.getString("orderH")%>
                                             <%=cur.getDate().toString()%></p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>
+                                    <td width="200px">
                                         <%--пикчи--%>
                                     </td>
-                                    <td>
-                                        <p class="other">Товар</p>
+                                    <td width="200px">
+                                        <p class="other"><%=myres.getString("prod")%></p>
                                     </td>
-                                    <td>
-                                        <p class="other">Количество</p>
+                                    <td width="150px">
+                                        <p class="other"><%=myres.getString("count")%></p>
                                     </td>
                                 </tr>
                                 <%
@@ -117,7 +113,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="1" valign="bottom">
-                                        <p class="other">Стоимость:</p>  
+                                        <p class="other"><%=myres.getString("sum")%></p>  
                                     </td>
                                     <td colspan="2" valign="bottom">
                                         <p style="font-weight: 900; margin-bottom:4px;">
@@ -128,7 +124,7 @@
                                 </tr>
                                 <tr>
                                     <td colspan="1" valign="bottom">
-                                        <p class="other">Способ доставки: </p> 
+                                        <p class="other"><%=myres.getString("shipMet")%></p> 
                                     </td>
                                     <td colspan="2" valign="bottom">                                         
                                         <p style="font-weight: 900; margin-bottom:4px;">
@@ -140,9 +136,9 @@
                         </div>
                         <%
                             }
-                        } else{
+                        } else {
                         %>
-                        <p class="other">Вы ещё ничего не заказывали. </p> 
+                        <p class="other"><%=myres.getString("emptyHist")%> </p> 
                         <%
                             }
                         %>

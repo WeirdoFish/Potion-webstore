@@ -41,7 +41,9 @@
     <security-constraint>
         <web-resource-collection>
             <url-pattern>/cabinet.jsp</url-pattern>
-            <url-pattern>/redirect.jsp</url-pattern>
+            <url-pattern>/ordering</url-pattern>
+            <url-pattern>/history.jsp</url-pattern>
+            <url-pattern>/purchase.jsp</url-pattern>
             <url-pattern>/login</url-pattern>
         </web-resource-collection>
         <auth-constraint>

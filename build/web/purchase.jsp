@@ -4,14 +4,7 @@
 <%@page import="etu.lab.bd.DBWork"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="etu.lab.bd.Items"%>
-<%@page import="org.hibernate.cfg.AnnotationConfiguration"%>
 <%@page import="java.util.Date"%>
-<%@page import="org.hibernate.HibernateException"%>
-<%@page import="etu.lab.bd.MyHibernateUtil"%>
-<%@page import="org.hibernate.Transaction"%>
-<%@page import="org.hibernate.Session"%>
-<%@page import="org.hibernate.SessionFactory"%>
 
 <%@page import="net.sf.ehcache.hibernate.HibernateUtil"%>
 <%@page import="etu.lab.bd.History"%>
@@ -71,7 +64,7 @@
                 <tr>
                     <c:if test="${order.getSize() eq 0 }">
                         <td align="center" colspan="4" >
-                            <p class="other">Вы можете перейти <a class="alink" href="history.jsp"> к истории покупок</a></p>
+                            <p class="other"><fmt:message key="goHist"/><a class="alink" href="history.jsp"> <fmt:message key="linkHist"/></a></p>
 
                         </td>
                     </c:if>
@@ -86,20 +79,20 @@
                         <td  colspan="1" align="top">
                             <div class="itemP" style="width:300px;">
                                 <div  align="top">
-                                    <p><p class="other"><b>Выберите способ доставки:</p></b><Br>
+                                    <p><p class="other"><b><fmt:message key="chShipMet"/></p></b><Br>
 
-                                    <input type="radio"  name="ship" value="market" checked onclick="changeShip()"> Самовывоз из магазина</br>
-                                    <input type="radio" name="ship" value="courier" onclick="changeShip()"> Доставка курьером</br>
+                                    <input type="radio"  name="ship" value="market" checked onclick="changeShip()"> <fmt:message key="shipMark"/></br>
+                                    <input type="radio" name="ship" value="courier" onclick="changeShip()"> <fmt:message key="shipCur"/></br>
 
                                     </p>
                                 </div>
 
                                 <div class="shipping" id="courier_ch" style="display:none;"> 
                                     <form action="ordering" method="POST" name="cour_form" >
-                                        <input  type="text" class="adress" name="adress" placeholder="..." required></input>
+                                        <input  type="text" class="adress" name="adress" placeholder="<fmt:message key="yurAdr"/>" required></input>
                                         <input  name="courier" value="true" style="display:none;"></input>
                                         </br>
-                                        <input  class = "buyBut" type="submit" >
+                                        <input  class = "buyBut" type="submit" value="<fmt:message key="saveOrder"/>">
 
                                     </form>
                                 </div>
@@ -107,12 +100,12 @@
                                 <div class="shipping" id="market_ch">
                                     <form action="ordering" method="POST" name="mark_form">
                                         <select id ="mark_inp" name="adress" class="filter" onchange="openMarker()">
-                                            <option  value='<fmt:message key="m1"/>'><fmt:message key="m1"/></option>
-                                            <option  value='<fmt:message key="m2"/>'><fmt:message key="m2"/></option>
-                                            <option  value='<fmt:message key="m3"/>'><fmt:message key="m3"/></option>
+                                            <option  value='<fmt:message key="m1"/>'><fmt:message key="m1_loc"/></option>
+                                            <option  value='<fmt:message key="m2"/>'><fmt:message key="m2_loc"/></option>
+                                            <option  value='<fmt:message key="m3"/>'><fmt:message key="m3_loc"/></option>
                                         </select>
                                         </br>
-                                        <input class = "buyBut" type="submit">
+                                       <input  class = "buyBut" type="submit" value="<fmt:message key="saveOrder"/>">
                                     </form>
                                 </div>
                             </div>
@@ -163,13 +156,13 @@
 
 
                     var infowindow1 = new google.maps.InfoWindow({
-                        content: '<div id="content">Гороховая ул. 57а</div>'
+                        content: '<div id="content"><fmt:message key="m1_loc"/></div>'
                     });
                     var infowindow2 = new google.maps.InfoWindow({
-                        content: '<div id="content">Аптекарский пр. 9</div>'
+                        content: '<div id="content"><fmt:message key="m2_loc"/></div>'
                     });
                     var infowindow3 = new google.maps.InfoWindow({
-                        content: '<div id="content">Литейный пр. 32</div>'
+                        content: '<div id="content"><fmt:message key="m3_loc"/></div>'
                     });
 
 

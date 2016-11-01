@@ -1,3 +1,4 @@
+<%@page import="java.text.DateFormatSymbols"%>
 <%@page import="java.util.Locale"%>
 <%@page import="java.util.ResourceBundle"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -29,6 +30,7 @@
                 for (Cookie c : cookie) {
                     if ("locale".equals(c.getName())) {
                         locale = new Locale(c.getValue());
+
                     }
                 }
             }
@@ -76,7 +78,27 @@
                                 <tr>
                                     <td colspan="3" align="left">
                                         <p class="other"><%=myres.getString("orderH")%>
-                                            <%=cur.getDate().toString()%></p>
+                                            <% String lang = locale.getLanguage();
+                                                SimpleDateFormat dateFormat = new SimpleDateFormat("dd MMMMM yyyy", locale);;
+                                                if (lang.equals(new Locale("ru").getLanguage())) {
+                                                    dateFormat = new SimpleDateFormat("dd MMMMM yyyy", locale);
+                                                } else if (lang.equals(new Locale("en").getLanguage())) {
+                                                    dateFormat = new SimpleDateFormat("MMMMM dd yyyy", locale);
+                                                } else if (lang.equals(new Locale("lat").getLanguage())) {
+                                                    DateFormatSymbols mon = new DateFormatSymbols() {
+
+                                                        @Override
+                                                        public String[] getMonths() {
+                                                            return new String[]{"Januarius", "Februarius", "Martius", "Aprilis", "Maius", "Junius",
+                                                                "Julius", "Augustus", "September", "October", "November", "December"};
+                                                        }
+
+                                                    };
+                                                    dateFormat = new SimpleDateFormat("dd MMMMM yyyy", mon);
+
+                                                }
+                                            %>
+                                            <%=dateFormat.format(cur.getDate()).toString()%></p>
                                     </td>
                                 </tr>
                                 <tr>
@@ -94,7 +116,9 @@
                                     ArrayList<Integer> ids, ams;
                                     ids = cur.getIds();
                                     ams = cur.getAms();
-                                    for (int i = 0; i < ids.size(); i++) {
+                                    for (int i = 0;
+                                            i < ids.size();
+                                            i++) {
                                 %>
                                 <tr>
                                     <td align="center">

@@ -55,7 +55,7 @@ public class DBWork {
         try {
             session = MyHibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
-            List list = session.createQuery("FROM History WHERE CUSTOMER='"+username+"'").list();
+            List list = session.createQuery("FROM History WHERE CUSTOMER='"+username+"' ORDER BY PURCHASE DESC").list();
             
             for (Iterator iterator = list.iterator(); iterator.hasNext();) {
                 History cur = (History) iterator.next();

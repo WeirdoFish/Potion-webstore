@@ -17,7 +17,7 @@
         <servlet-class>etu.lab.Product</servlet-class>
         <init-param>
             <param-name>firstTab</param-name>
-            <param-value>feedback</param-value>
+            <param-value>shortD</param-value>
         </init-param>
         <init-param>
             <param-name>stdLang</param-name>
@@ -31,6 +31,10 @@
     <servlet>
         <servlet-name>Ordering</servlet-name>
         <servlet-class>etu.lab.bd.Ordering</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LeaveCom</servlet-name>
+        <servlet-class>etu.lab.coms.LeaveCom</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Product</servlet-name>
@@ -56,6 +60,7 @@
         </web-resource-collection>
         <auth-constraint>
             <role-name>user</role-name>
+            <role-name>admin</role-name>
         </auth-constraint>
         <user-data-constraint>
             <transport-guarantee>CONFIDENTIAL</transport-guarantee>
@@ -75,9 +80,13 @@
         <servlet-name>Ordering</servlet-name>
         <url-pattern>/ordering</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LeaveCom</servlet-name>
+        <url-pattern>/leavecom</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
-           20
+            20
         </session-timeout>
     </session-config>
 </web-app>

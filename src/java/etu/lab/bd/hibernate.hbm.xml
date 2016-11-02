@@ -7,7 +7,7 @@
 <hibernate-mapping>
     <class name="etu.lab.bd.History" table="HISTORY">
         <id name="purchase" column="PURCHASE" type="int">
-         <generator class="increment"/>
+            <generator class="increment"/>
         </id>
         <property name="customer" column="CUSTOMER" type="string"/>
         <property name="price" column="PRICE" type="integer"/>
@@ -21,9 +21,20 @@
         </id>
        
         <property name="item" column="ITEM" type="integer"/>
-       <!-- <property name="purchase" column="PURCHASE" type="integer"/> -->
+        <!-- <property name="purchase" column="PURCHASE" type="integer"/> -->
         <property name="amount" column="AMOUNT" type="integer"/>
         <many-to-one name="purchase" class="etu.lab.bd.History" column="PURCHASE"/>
+    </class>
+    
+    <class name="etu.lab.bd.Comments" table="COMMENTS">
+        <id name="id" type="int" column="ID">
+            <generator class="increment"/>
+        </id>
+       
+        <property name="user" column="USER" type="string"/>
+        
+        <property name="datetime" column="DATETIME" type="date"/>
+        <property name="text" column="TEXT" type="string"/>
     </class>
 
 </hibernate-mapping>

@@ -11,9 +11,16 @@ import org.hibernate.Transaction;
 
 public class DBWork {
 
+    public class Com {
+
+        String text;
+        String name;
+        Date date;
+        Date time;
+    }
 
     public DBWork() {
-        
+
     }
 
     static public void addOrder(String user, String magazine, CartBean order) {
@@ -46,7 +53,6 @@ public class DBWork {
 
     }
 
-  
     static public ArrayList<Notes> getHist(String username) {
         Session session = null;
         Transaction tx = null;
@@ -55,23 +61,23 @@ public class DBWork {
         try {
             session = MyHibernateUtil.getSessionFactory().openSession();
             tx = session.beginTransaction();
-            List list = session.createQuery("FROM History WHERE CUSTOMER='"+username+"' ORDER BY PURCHASE DESC").list();
-            
+            List list = session.createQuery("FROM History WHERE CUSTOMER='" + username + "' ORDER BY PURCHASE DESC").list();
+
             for (Iterator iterator = list.iterator(); iterator.hasNext();) {
                 History cur = (History) iterator.next();
                 Integer order_num = cur.getPurchase();
-                
+
                 ArrayList<Integer> item_ids = new ArrayList();
                 ArrayList<Integer> item_ams = new ArrayList();
-                List ItemsList = session.createQuery("FROM Items WHERE PURCHASE='"+order_num+"'").list();
-                
+                List ItemsList = session.createQuery("FROM Items WHERE PURCHASE='" + order_num + "'").list();
+
                 for (Iterator iter = ItemsList.iterator(); iter.hasNext();) {
-                    Items curIt = (Items)iter.next();
+                    Items curIt = (Items) iter.next();
                     item_ids.add(curIt.getItem());
                     item_ams.add(curIt.getAmount());
                 }
-                notes.add(new Notes(cur.getPrice(),cur.getShip(),cur.getTime(),item_ids,item_ams));
-            } 
+                notes.add(new Notes(cur.getPrice(), cur.getShip(), cur.getTime(), item_ids, item_ams));
+            }
             tx.commit();
             return notes;
         } catch (HibernateException e) {
@@ -85,4 +91,49 @@ public class DBWork {
         }
     }
 
+    static public ArrayList<Comments> getComments() {
+        Session session = MyHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            List list = session.createQuery("FROM Comments ORDER BY DATETIME DESC").list();
+            ArrayList<Comments> coms = new ArrayList();
+
+            for (Iterator iterator = list.iterator(); iterator.hasNext();) {
+                Comments cur = (Comments) iterator.next();
+                coms.add(cur);
+            }
+
+            tx.commit();
+            return coms;
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+            return null;
+        } finally {
+            session.close();
+        }
+
+    }
+
+    static public void addComment(String user, String text, Date date) {
+        Session session = MyHibernateUtil.getSessionFactory().openSession();
+        Transaction tx = null;
+        try {
+            tx = session.beginTransaction();
+            Comments com = new Comments(user, text, date);
+            session.save(com);
+            tx.commit();
+        } catch (HibernateException e) {
+            if (tx != null) {
+                tx.rollback();
+            }
+            e.printStackTrace();
+        } finally {
+            session.close();
+        }
+
+    }
 }

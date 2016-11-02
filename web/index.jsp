@@ -1,3 +1,4 @@
+<%@page import="etu.lab.bd.DBWork"%>
 <%@page import="etu.lab.ProdBean"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page import="javax.servlet.http.Cookie" %>
@@ -32,6 +33,7 @@
                 }
             }
         %>
+          
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Potion Store - Catalog</title>
         <link rel='stylesheet' href='tabStyles.css'>
@@ -97,6 +99,7 @@
                 <tr>
                     <td colspan="4" width="1100">
                         <div class="blockM"> 
+                          
                         </div>
                     </td>
                 </tr>
@@ -144,8 +147,6 @@
                         <%
                             }
                         %>
-
-
                     </td>
                 </tr>
             </table>

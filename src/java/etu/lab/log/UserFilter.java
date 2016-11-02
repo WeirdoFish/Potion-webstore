@@ -80,6 +80,7 @@ public class UserFilter implements Filter {
             String temp = getPage(req.getRequestURL().toString());
             if (temp != null) {
                 action = temp;
+
                 switch (action) {
                     case "auth.jsp":
                         action = "Переход на страницу авторизации";
@@ -138,10 +139,13 @@ public class UserFilter implements Filter {
                         action = "Переход в личный кабинет";
                         break;
                     case "history.jsp":
-                        action = "Просмотр истории";
+                        action = "Переход к истории покупок";
+                        break;
+                    case "leavecom":
+                        action = "Добавление комментария";
                         break;
                     case "purchase.jsp": {
-                        action = "Просмотр страницы заказа (пусто)";
+                        action = "Переход к странице заказа (пусто)";
                         HttpSession session = req.getSession();
                         if ((CartBean) session.getAttribute("order") != null) {
                             CartBean order = (CartBean) session.getAttribute("order");
@@ -155,7 +159,7 @@ public class UserFilter implements Filter {
                         action = "Сохранение заказа";
                         break;
                     case "index.jsp": {
-                        action = "Просмотр списка товаров";
+                        action = "Переход к списку товаров";
                         if ((req.getParameter("categ") != null) || (req.getParameter("price") != null)) {
                             String filter1 = "",
                                     filter2 = "";
@@ -171,6 +175,10 @@ public class UserFilter implements Filter {
                     break;
                     default:
                         break;
+                }
+                String aja = req.getParameter("user");
+                if (aja != null) {
+                    action = "Отправка комментария";
                 }
             }
         } catch (Exception e) {

@@ -109,28 +109,29 @@
                         </div>
                     </td>
                     <td align="center" colspan="2">
-                        <div class="itemP" style="width:650px;" id="result_box">
-                            <p class="other">Отзывы о магазине</p>
-                            <div class="msg" style="margin:10px;" id="result_box" align="left">
-
-                                <textarea id="com_text" class="adress" style="height: 100px; width:500px;" placeholder="Опишите" ></textarea></br>
-                                <input id="com_user" value="<%= request.getSession().getAttribute("username")%>" style="display:none;"></input>
-                                <input onclick="sendAjax()" class = "buyBut" type="submit" value="Оставить комментарий"></input>
+                        <div class="itemP" style="width:650px;" >
+                            <p class="other"><%=myres.getString("shopFeed")%></p></br>
 
 
+                            <textarea id="com_text" class="adress" style="height: 100px; width:500px;" placeholder="<%=myres.getString("discrHint")%>" ></textarea></br>
+                            <input id="com_user" value="<%= request.getSession().getAttribute("username")%>" style="display:none;"></input>
+                            <input onclick="sendAjax()" class = "buyBut" type="submit" value="<%=myres.getString("leaveCom")%>"></input>
+
+                            <div style="margin:10px;" id="result_box" align="left">
                                 <%
                                     SimpleDateFormat time = new SimpleDateFormat("HH:mm");
                                     ArrayList<Comments> coms = DBWork.getComments();
                                     for (Comments c : coms) {
 
-                                       // Timestamp stamp = new Timestamp(c.getDatetime(),6465454);
-                                       // Date date = new Date(stamp.getTime());
-                                %>
-                                <p><p class="other" style="margin:0px;"><%=c.getUser()%></p>
-                                <%= dateFormat.format(c.getDatetime()).toString()%>  <%= time.format(c.getDatetime().getTime()).toString()%></p>
+                                        // Timestamp stamp = new Timestamp(c.getDatetime(),6465454);
+                                        // Date date = new Date(stamp.getTime());
+%>
+                                <div style='margin-left:10px;' class="here">
+                                    <p><p class="other" style="margin:0px;"><%=c.getUser()%></p>
+                                    <%= dateFormat.format(new Date(c.getDatetime().getTime()))%>  <%= time.format(new Date(c.getDatetime().getTime()))%></p>
 
-                                <p><%=c.getText()%></p>
-
+                                    <p><%=c.getText()%></p>
+                                </div>
                                 <%
                                     }
 
@@ -152,17 +153,30 @@
                 if (req.readyState === 4 && req.status === 200) {
                     var cd = document.getElementById("result_box").innerHTML;
                     var toks = req.responseText.split('#_#');
-                    // var msg = document.getElementsByClassName("msg")[0];
-                    cd = cd + ("<div align='left' class='msg' style='margin-left:10px;'><p><p class='other' style='margin:0px;'>"
+                    cd = cd + ("<div align='left' class='here' style='margin-left:10px;'><p><p class='other' style='margin:0px;'>"
                             + toks[0] + "</p>" + toks[1] + "</p></p><p>" + toks[2] + "</p></div>");
+
+                    //var newCom = document.createElement('div');
+                    //newCom.innerHTML = cd;
                     document.getElementById("result_box").innerHTML = cd;
+                    // var msg = document.getElementsByClassName("here")[0];
+                    //  if (msg!== null){
+                    //  msg.parentNode.insertBefore(newCom, msg);
+                    // } else{
+                    //var parent = document.getElementById("result_box");
+                    // parent.parentNode.appendChild(newCom);
+                    // }
+                    //var parent = document.getElementById("result_box");
+                    // var to=msg.parentNode;
+
+                    //parent.insertBefore(newCom, parent.firstChild);
                 }
             };
             var txt = document.getElementById("com_text").value.toString();
             var usr = document.getElementById("com_user").value.toString();
 
             if (txt !== "") {
-                alert(txt);
+                // alert(txt);
                 var post = "user=" + usr + "&text=" + txt;
                 req.open("GET", "leavecom?user=" + usr + "&text=" + txt, true);
                 // req.open("POST", "leavecom", true);

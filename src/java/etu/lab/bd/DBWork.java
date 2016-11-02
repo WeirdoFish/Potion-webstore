@@ -1,6 +1,7 @@
 package etu.lab.bd;
 
 import etu.lab.CartBean;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -10,14 +11,6 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 public class DBWork {
-
-    public class Com {
-
-        String text;
-        String name;
-        Date date;
-        Date time;
-    }
 
     public DBWork() {
 
@@ -30,6 +23,12 @@ public class DBWork {
         Integer itId = null;
         try {
             tx = session.beginTransaction();
+            /*  if (lang.getLanguage().equals(new Locale("en").getLanguage())) {
+                datetime.setHours(datetime.getHours() + 3);
+            } else if (lang.getLanguage().equals(new Locale("lat").getLanguage())) {
+                datetime.setHours(datetime.getHours() + 2);
+            }
+             */
             History h = new History(user, new Date(), magazine, order.calcAll());
             session.save(h);
 
@@ -96,7 +95,7 @@ public class DBWork {
         Transaction tx = null;
         try {
             tx = session.beginTransaction();
-            List list = session.createQuery("FROM Comments ORDER BY DATETIME DESC").list();
+            List list = session.createQuery("FROM Comments ORDER BY DATETIME").list();
             ArrayList<Comments> coms = new ArrayList();
 
             for (Iterator iterator = list.iterator(); iterator.hasNext();) {
@@ -118,7 +117,7 @@ public class DBWork {
 
     }
 
-    static public void addComment(String user, String text, Date date) {
+    static public void addComment(String user, String text, Timestamp date) {
         Session session = MyHibernateUtil.getSessionFactory().openSession();
         Transaction tx = null;
         try {

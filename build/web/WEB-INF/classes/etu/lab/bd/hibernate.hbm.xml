@@ -33,7 +33,7 @@
        
         <property name="user" column="USER" type="string"/>
         
-        <property name="datetime" column="DATETIME" type="date"/>
+        <property name="datetime" column="DATETIME" type="timestamp"/>
         <property name="text" column="TEXT" type="string"/>
     </class>
 

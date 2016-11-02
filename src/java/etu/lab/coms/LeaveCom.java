@@ -3,6 +3,7 @@ package etu.lab.coms;
 import etu.lab.bd.DBWork;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Timestamp;
 import java.text.DateFormatSymbols;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,14 +25,20 @@ public class LeaveCom extends HttpServlet {
             String user = request.getParameter("user");
             String text = request.getParameter("text");
             Date datetime = new Date();
-            Locale lang = getLang(request,response);
-            SimpleDateFormat dateForm=getDateFormat(lang);
+            Locale lang = getLang(request, response);
             
+            if (lang.getLanguage().equals(new Locale("en").getLanguage())) {
+                datetime.setHours(datetime.getHours() + 3);
+            } else if (lang.getLanguage().equals(new Locale("lat").getLanguage())) {
+                datetime.setHours(datetime.getHours() + 2);
+            }
+            SimpleDateFormat dateForm = getDateFormat(lang);
+
             if (user != null && text != null) {
-                DBWork.addComment(user, text, datetime);
+                DBWork.addComment(user, text, new Timestamp(datetime.getTime()));
 
                 PrintWriter ajax_resp = response.getWriter();
-                ajax_resp.print(user + "#_#" + dateForm.format(datetime)+ "#_#" + text);
+                ajax_resp.print(user + "#_#" + dateForm.format(datetime) + "#_#" + text);
                 // response.sendRedirect("cabinet.jsp");
             }
         }

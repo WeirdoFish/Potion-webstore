@@ -28,6 +28,7 @@ public class Ordering extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+       // response.setContentType("text/html;charset=UTF-8");
         request.setCharacterEncoding("UTF-8");
         HttpSession session = request.getSession();
         CartBean order = (CartBean) session.getAttribute("order");
@@ -41,7 +42,7 @@ public class Ordering extends HttpServlet {
         if (order.getSize() != 0) {
             DBWork.addOrder(session.getAttribute("username").toString(), ship, order);
         }
-       
+
         response.sendRedirect("purchase.jsp");
     }
 

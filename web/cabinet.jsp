@@ -102,13 +102,12 @@
                                     out.println(myres.getString("feedback"));
                                 }
                             %> 
-                            <%-- <p class="other"><%=myres.getString("lang")%></p>
-                             <%=request.getSession().getAttribute("lang").toString()%> --%>
+                            
 
                             <button style="margin-top:30px;" class="another" onclick="javascript: window.location = 'history.jsp';"><%= myres.getString("history")%></button>
                         </div>
                     </td>
-                    <td align="center" colspan="2">
+                    <td align="center" colspan="2" >
                         <div class="itemP" style="width:650px;" >
                             <p class="other"><%=myres.getString("shopFeed")%></p></br>
 
@@ -121,14 +120,22 @@
                                 <%
                                     SimpleDateFormat time = new SimpleDateFormat("HH:mm");
                                     ArrayList<Comments> coms = DBWork.getComments();
-                                    for (Comments c : coms) {
+                                    Integer zone = 0;
+                                    if (locale.getLanguage().equals("en")) {
+                                        zone = -3;
+                                    } else if (locale.getLanguage().equals("lat")) {
+                                        zone = -2;
+                                    }
 
-                                        // Timestamp stamp = new Timestamp(c.getDatetime(),6465454);
-                                        // Date date = new Date(stamp.getTime());
-%>
+                                    for (Comments c : coms) {
+                                %>
                                 <div style='margin-left:10px;' class="here">
                                     <p><p class="other" style="margin:0px;"><%=c.getUser()%></p>
-                                    <%= dateFormat.format(new Date(c.getDatetime().getTime()))%>  <%= time.format(new Date(c.getDatetime().getTime()))%></p>
+                                    <%
+                                        Date curDate = new Date(c.getDatetime().getTime());
+                                        curDate.setHours(curDate.getHours() + zone);
+                                    %>
+                                    <%= dateFormat.format(curDate)%>  <%= time.format(curDate)%></p>
 
                                     <p><%=c.getText()%></p>
                                 </div>
@@ -156,38 +163,27 @@
                     cd = cd + ("<div align='left' class='here' style='margin-left:10px;'><p><p class='other' style='margin:0px;'>"
                             + toks[0] + "</p>" + toks[1] + "</p></p><p>" + toks[2] + "</p></div>");
 
-                    //var newCom = document.createElement('div');
-                    //newCom.innerHTML = cd;
                     document.getElementById("result_box").innerHTML = cd;
-                    // var msg = document.getElementsByClassName("here")[0];
-                    //  if (msg!== null){
-                    //  msg.parentNode.insertBefore(newCom, msg);
-                    // } else{
-                    //var parent = document.getElementById("result_box");
-                    // parent.parentNode.appendChild(newCom);
-                    // }
-                    //var parent = document.getElementById("result_box");
-                    // var to=msg.parentNode;
 
-                    //parent.insertBefore(newCom, parent.firstChild);
                 }
             };
             var txt = document.getElementById("com_text").value.toString();
             var usr = document.getElementById("com_user").value.toString();
 
             if (txt !== "") {
-                // alert(txt);
                 var post = "user=" + usr + "&text=" + txt;
                 req.open("GET", "leavecom?user=" + usr + "&text=" + txt, true);
-                // req.open("POST", "leavecom", true);
-                //req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded')
-                // req.send(post);
                 req.send();
             }
         }
 
         function startTime() {
             var tm = new Date();
+            if (getCookie('locale') === 'en')
+                tm.setHours(tm.getHours() - 3);
+            else if (getCookie('locale') === 'lat')
+                tm.setHours(tm.getHours() - 2);
+
             var h = tm.getHours();
             var m = tm.getMinutes();
             var s = tm.getSeconds();
@@ -202,5 +198,15 @@
             }
             return i;
         }
+        function getCookie(name)
+        {
+            var matches = document.cookie.match(new RegExp(
+                    "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
+                    ));
+            return matches ? decodeURIComponent(matches[1]) : undefined;
+        }
+
+
+
     </script>
 </html>

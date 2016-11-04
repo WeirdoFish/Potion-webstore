@@ -88,7 +88,7 @@
                                 </div>
 
                                 <div class="shipping" id="courier_ch" style="display:none;"> 
-                                    <form action="ordering" method="POST" name="cour_form" >
+                                    <form action="ordering" method="POST" name="cour_form" accept-charset="ISO-8859-1" >
                                         <input  type="text" class="adress" name="adress" placeholder="<fmt:message key="yurAdr"/>" required></input>
                                         <input  name="courier" value="true" style="display:none;"></input>
                                         </br>
@@ -98,7 +98,7 @@
                                 </div>
 
                                 <div class="shipping" id="market_ch">
-                                    <form action="ordering" method="POST" name="mark_form">
+                                    <form action="ordering" method="POST" name="mark_form" accept-charset="ISO-8859-1">
                                         <select id ="mark_inp" name="adress" class="filter" onchange="openMarker()">
                                             <option  value='<fmt:message key="m1"/>'><fmt:message key="m1_loc"/></option>
                                             <option  value='<fmt:message key="m2"/>'><fmt:message key="m2_loc"/></option>

@@ -12,11 +12,13 @@
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/web/prewiev.jsp</file>
-            <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/web/js/filter.js</file>
+            <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/src/java/etu/lab/bd/Comments.java</file>
+            <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/web/WEB-INF/classes/strings_ru.properties</file>
+            <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/src/java/etu/lab/bd/MyHibernateUtil.java</file>
             <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/web/index.jsp</file>
             <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/web/cabinet.jsp</file>
-            <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/src/java/etu/lab/ProdBean.java</file>
+            <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/src/java/etu/lab/bd/DBWork.java</file>
+            <file>file:/C:/Users/pc-home/Documents/NetBeansProjects/WebStoreP/src/java/etu/lab/bd/hibernate.hbm.xml</file>
         </group>
     </open-files>
 </project-private>
